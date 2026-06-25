@@ -36,3 +36,29 @@ CREATE TABLE projects (
     REFERENCES departments(dept_id)
 );
 
+
+CREATE TABLE incidents (
+    incident_id INT PRIMARY KEY AUTO_INCREMENT,
+    dept_id INT NOT NULL,
+    incident_title VARCHAR(100) NOT NULL,
+    incident_description VARCHAR(255),
+    incident_type VARCHAR(50) NOT NULL,
+    reported_at DATETIME NOT NULL,
+    resolved_at DATETIME,
+
+    FOREIGN KEY (dept_id)
+    REFERENCES departments(dept_id)
+);
+
+
+CREATE TABLE daily_operations (
+    daily_operations_id INT PRIMARY KEY AUTO_INCREMENT,
+    dept_id INT NOT NULL,
+    operation_date DATE NOT NULL,
+    tasks_assigned INT NOT NULL,
+    tasks_completed INT NOT NULL,
+    delayed_tasks INT NOT NULL,
+
+    FOREIGN KEY (dept_id)
+    REFERENCES departments(dept_id)
+);
