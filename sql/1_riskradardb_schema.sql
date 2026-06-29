@@ -62,3 +62,18 @@ CREATE TABLE daily_operations (
     FOREIGN KEY (dept_id)
     REFERENCES departments(dept_id)
 );
+
+
+
+CREATE TABLE incident_projects (
+    incident_id INT NOT NULL,
+    project_id INT NOT NULL,
+
+    PRIMARY KEY (incident_id, project_id),
+
+    FOREIGN KEY (incident_id)
+        REFERENCES incidents(incident_id),
+
+    FOREIGN KEY (project_id)
+        REFERENCES projects(project_id)
+);
