@@ -239,3 +239,23 @@ LEFT JOIN projects p
 GROUP BY d.dept_id, d.department_name
 ORDER BY high_priority_projects DESC;
 
+-- Rank departments by risk score
+WITH department_risk AS (
+    SELECT
+        d.department_name,
+        SUM(CASE
+                WHEN i.severity = 'Critical' THEN 5
+                WHEN i.severity = 'High' THEN 3
+                WHEN i.severity = 'Medium' THEN 2
+                WHEN i.severity = 'Low' THEN 1
+                ELSE 0
+            END) AS risk_score
+    FROM departments d
+    LEFT JOIN incidents i ON d.dept_id = i.dept_id
+    GROUP BY d.dept_id, d.department_name
+)
+SELECT
+    department_name,
+    risk_score,
+    RANK() OVER (ORDER BY risk_score DESC) AS risk_rank
+FROM department_risk;
