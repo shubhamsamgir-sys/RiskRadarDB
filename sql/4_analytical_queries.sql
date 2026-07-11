@@ -254,8 +254,17 @@ WITH department_risk AS (
     LEFT JOIN incidents i ON d.dept_id = i.dept_id
     GROUP BY d.dept_id, d.department_name
 )
+
 SELECT
     department_name,
     risk_score,
     RANK() OVER (ORDER BY risk_score DESC) AS risk_rank
 FROM department_risk;
+
+-- Standardize incident type casing for reporting consistency
+SELECT
+    UPPER(incident_type) AS incident_type_normalized,
+    COUNT(*) AS total_incidents
+FROM incidents
+GROUP BY UPPER(incident_type)
+ORDER BY total_incidents DESC;
