@@ -2,7 +2,7 @@
 ==========================================
 RiskRadarDB
 Analytical Queries
-Total Queries: 23
+Total Queries: 21
 
 Purpose:
 Business intelligence and risk analysis
