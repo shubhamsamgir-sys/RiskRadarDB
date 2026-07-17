@@ -1,4 +1,3 @@
-
 -- Total incidents by department
 SELECT
     d.department_name,
