@@ -1,16 +1,3 @@
-/*
-==========================================
-RiskRadarDB
-Analytical Queries
-Total Queries: 23
-
-Purpose:
-Business intelligence and risk analysis
-==========================================
-*/
-
-
-
 
 -- Total incidents by department
 SELECT
